@@ -1,6 +1,7 @@
 package com.heroesarena
 
 import android.app.Application
+import android.os.Build
 import android.os.StrictMode
 import com.heroesarena.utils.GameSettings
 
@@ -10,7 +11,8 @@ class HeroesArenaApp : Application() {
         instance = this
         GameSettings.init(this)
 
-        if (BuildConfig.DEBUG) {
+        // Enable StrictMode on debuggable builds (API 28+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && isDebuggable()) {
             StrictMode.setThreadPolicy(
                 StrictMode.ThreadPolicy.Builder()
                     .detectAll()
@@ -18,6 +20,10 @@ class HeroesArenaApp : Application() {
                     .build()
             )
         }
+    }
+
+    private fun isDebuggable(): Boolean {
+        return (applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
     }
 
     companion object {

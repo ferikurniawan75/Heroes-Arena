@@ -141,7 +141,7 @@ class HeroSelectActivity : AppCompatActivity() {
         inner class HeroViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
             val tvName: TextView = view.findViewById(R.id.tvHeroName)
             val tvClass: TextView = view.findViewById(R.id.tvHeroClass)
-            val viewBg: View = view.findViewById(R.id.heroCardBg)
+            val viewBg: android.view.View = view.findViewById(R.id.heroCardBg)
         }
 
         override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): HeroViewHolder {

@@ -8,6 +8,7 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.heroesarena.models.GameMode
 import com.heroesarena.models.Hero
+import com.heroesarena.models.SkillType
 
 /**
  * Custom SurfaceView for game rendering
@@ -35,9 +36,11 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
 
     fun startGame(mode: GameMode, hero: Hero) {
         engine.startGame(mode, hero)
-        gameLoop = GameLoop(engine) {
-            renderFrame()
-        }
+        gameLoop = GameLoop(engine, object : GameLoop.GameLoopCallback {
+            override fun onFrame() {
+                renderFrame()
+            }
+        })
         gameLoop?.start()
     }
 
@@ -213,7 +216,3 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
     }
 }
 
-// SkillType for UI
-enum class SkillType {
-    SKILL_1, SKILL_2, SKILL_3, ULTIMATE
-}

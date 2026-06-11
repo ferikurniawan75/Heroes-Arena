@@ -5,5 +5,3 @@
 -keep class com.heroesarena.models.** { *; }
 -keep class com.heroesarena.engine.** { *; }
 -dontwarn javax.annotation.**
--dontwarn okhttp3.**
--dontwarn okio.**

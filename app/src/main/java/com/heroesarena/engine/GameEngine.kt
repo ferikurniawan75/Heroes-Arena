@@ -148,17 +148,17 @@ class GameEngine {
 
     private fun spawnJungleMonsters() {
         // River crabs
-        jungleMonsters.add(JungleMonster("jc_1", "River Crab", mapWidth * 0.4f, mapHeight * 0.5f, 500f, 20, 50))
-        jungleMonsters.add(JungleMonster("jc_2", "River Crab", mapWidth * 0.6f, mapHeight * 0.5f, 500f, 20, 50))
+        jungleMonsters.add(JungleMonster("jc_1", "River Crab", mapWidth * 0.4f, mapHeight * 0.5f, 500f, 20f, 50))
+        jungleMonsters.add(JungleMonster("jc_2", "River Crab", mapWidth * 0.6f, mapHeight * 0.5f, 500f, 20f, 50))
 
         // Buff monsters
-        jungleMonsters.add(JungleMonster("buff_1", "Blue Golem", mapWidth * 0.3f, mapHeight * 0.65f, 1500f, 50, 200))
-        jungleMonsters.add(JungleMonster("buff_2", "Red Lizard", mapWidth * 0.3f, mapHeight * 0.35f, 1500f, 50, 200))
-        jungleMonsters.add(JungleMonster("buff_3", "Blue Golem", mapWidth * 0.7f, mapHeight * 0.35f, 1500f, 50, 200))
-        jungleMonsters.add(JungleMonster("buff_4", "Red Lizard", mapWidth * 0.7f, mapHeight * 0.65f, 1500f, 50, 200))
+        jungleMonsters.add(JungleMonster("buff_1", "Blue Golem", mapWidth * 0.3f, mapHeight * 0.65f, 1500f, 50f, 200))
+        jungleMonsters.add(JungleMonster("buff_2", "Red Lizard", mapWidth * 0.3f, mapHeight * 0.35f, 1500f, 50f, 200))
+        jungleMonsters.add(JungleMonster("buff_3", "Blue Golem", mapWidth * 0.7f, mapHeight * 0.35f, 1500f, 50f, 200))
+        jungleMonsters.add(JungleMonster("buff_4", "Red Lizard", mapWidth * 0.7f, mapHeight * 0.65f, 1500f, 50f, 200))
 
         // Lord (boss)
-        jungleMonsters.add(JungleMonster("lord", "Lord", mapWidth * 0.5f, mapHeight * 0.5f, 8000f, 150, 500, isBoss = true))
+        jungleMonsters.add(JungleMonster("lord", "Lord", mapWidth * 0.5f, mapHeight * 0.5f, 8000f, 150f, 500, isBoss = true))
     }
 
     /**
@@ -204,6 +204,41 @@ class GameEngine {
                 Lane.MID -> mapWidth * 0.85f to mapHeight * 0.5f
                 Lane.BOTTOM -> mapWidth * 0.9f to mapHeight * 0.85f
                 else -> mapWidth * 0.85f to mapHeight * 0.5f
+            }
+        }
+    }
+
+    private fun getLaneTarget(team: Team, lane: Lane): Pair<Float, Float> {
+        // Minions walk toward the enemy base along their lane
+        val enemyTeam = team.opposite()
+        val enemyBase = bases.find { it.team == enemyTeam }
+        val targetX = enemyBase?.x ?: (if (enemyTeam == Team.BLUE) mapWidth * 0.08f else mapWidth * 0.92f)
+        val targetY = enemyBase?.y ?: (if (enemyTeam == Team.BLUE) mapHeight * 0.92f else mapHeight * 0.08f)
+
+        // Route through lane waypoints toward enemy base
+        if (team == Team.BLUE) {
+            return when (lane) {
+                Lane.TOP -> {
+                    // Go up along left, then right along top
+                    val topWaypointX = mapWidth * 0.08f
+                    val topWaypointY = mapHeight * 0.08f
+                    // Choose the next waypoint based on current progress
+                    targetX to targetY
+                }
+                Lane.MID -> targetX to targetY
+                Lane.BOTTOM -> {
+                    val botWaypointX = mapWidth * 0.92f
+                    val botWaypointY = mapHeight * 0.92f
+                    targetX to targetY
+                }
+                else -> targetX to targetY
+            }
+        } else {
+            return when (lane) {
+                Lane.TOP -> targetX to targetY
+                Lane.MID -> targetX to targetY
+                Lane.BOTTOM -> targetX to targetY
+                else -> targetX to targetY
             }
         }
     }
