@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <!-- Background Image Area -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_dark"
+        android:alpha="0.5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_md">
+
+        <!-- Left Panel - Player Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_md">
+
+            <!-- Player Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_md">
+
+                    <TextView
+                        android:id="@+id/tvPlayerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Player"
+                        android:textSize="@dimen/text_xl"
+                        android:textColor="@color/gold"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvPlayerLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lv.1"
+                        android:textSize="@dimen/text_sm"
+                        android:textColor="@color/text_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvRank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Warrior III"
+                        android:textSize="@dimen/text_md"
+                        android:textColor="@color/accent"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/padding_xs" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/padding_sm">
+
+                        <TextView
+                            android:id="@+id/tvGold"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="5000"
+                            android:textColor="@color/gold"
+                            android:textSize="@dimen/text_sm"
+                            android:drawablePadding="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvDiamonds"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="100"
+                            android:textColor="@color/mp_blue"
+                            android:textSize="@dimen/text_sm" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Menu Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/padding_lg"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnPlay"
+                    style="@style/GameButton.Gold"
+                    android:layout_width="200dp"
+                    android:layout_height="56dp"
+                    android:text="⚔ PLAY"
+                    android:textSize="@dimen/text_xl"
+                    android:layout_marginBottom="@dimen/padding_md" />
+
+                <Button
+                    android:id="@+id/btnHeroes"
+                    style="@style/GameButton.Primary"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:text="🗡 HEROES"
+                    android:layout_marginBottom="@dimen/padding_sm" />
+
+                <Button
+                    android:id="@+id/btnShop"
+                    style="@style/GameButton.Primary"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:text="🛍 SHOP"
+                    android:layout_marginBottom="@dimen/padding_sm" />
+
+                <Button
+                    android:id="@+id/btnProfile"
+                    style="@style/GameButton.Primary"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:text="👤 PROFILE"
+                    android:layout_marginBottom="@dimen/padding_sm" />
+
+                <Button
+                    android:id="@+id/btnRank"
+                    style="@style/GameButton.Primary"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:text="🏆 RANK"
+                    android:layout_marginBottom="@dimen/padding_sm" />
+
+                <Button
+                    android:id="@+id/btnSettings"
+                    style="@style/GameButton.Primary"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:text="⚙ SETTINGS" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Right Panel - Featured/News -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_md">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_lg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚔"
+                        android:textSize="72sp"
+                        android:textColor="@color/gold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HEROES ARENA"
+                        android:textSize="@dimen/text_xxl"
+                        android:textColor="@color/gold"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1"
+                        android:layout_marginTop="@dimen/padding_md" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5v5 MOBA - Clash of Legends"
+                        android:textSize="@dimen/text_lg"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="@dimen/padding_sm" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Choose your hero. Destroy the enemy base. Claim victory!"
+                        android:textSize="@dimen/text_md"
+                        android:textColor="@color/text_hint"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/padding_lg"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Game Mode Quick Access -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/padding_md">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/padding_xs"
+                    app:cardBackgroundColor="@color/team_blue"
+                    app:cardCornerRadius="8dp"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Classic 5v5"
+                        android:gravity="center"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_sm"
+                        android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/padding_xs"
+                    android:layout_marginEnd="@dimen/padding_xs"
+                    app:cardBackgroundColor="@color/btn_danger"
+                    app:cardCornerRadius="8dp"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Ranked"
+                        android:gravity="center"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_sm"
+                        android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/padding_xs"
+                    app:cardBackgroundColor="@color/class_assassin"
+                    app:cardCornerRadius="8dp"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Brawl"
+                        android:gravity="center"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_sm"
+                        android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Heroes Arena</string>
+    <string name="tagline">5v5 MOBA - Clash of Legends</string>
+
+    <!-- Main Menu -->
+    <string name="menu_play">PLAY</string>
+    <string name="menu_heroes">HEROES</string>
+    <string name="menu_shop">SHOP</string>
+    <string name="menu_profile">PROFILE</string>
+    <string name="menu_rank">RANK</string>
+    <string name="menu_settings">SETTINGS</string>
+
+    <!-- Game Modes -->
+    <string name="mode_classic">Classic 5v5</string>
+    <string name="mode_ranked">Ranked Match</string>
+    <string name="mode_brawl">Brawl Mode</string>
+    <string name="mode_custom">Custom Game</string>
+    <string name="mode_ai">VS AI</string>
+
+    <!-- Hero Classes -->
+    <string name="class_tank">Tank</string>
+    <string name="class_fighter">Fighter</string>
+    <string name="class_assassin">Assassin</string>
+    <string name="class_mage">Mage</string>
+    <string name="class_marksman">Marksman</string>
+    <string name="class_support">Support</string>
+
+    <!-- Game HUD -->
+    <string name="hud_kills">Kills</string>
+    <string name="hud_deaths">Deaths</string>
+    <string name="hud_assists">Assists</string>
+    <string name="hud_gold">Gold</string>
+    <string name="hud_level">Lv</string>
+    <string name="hud_minions">Minions</string>
+
+    <!-- Settings -->
+    <string name="settings_graphics">Graphics</string>
+    <string name="settings_audio">Audio</string>
+    <string name="settings_controls">Controls</string>
+    <string name="settings_gameplay">Gameplay</string>
+    <string name="settings_account">Account</string>
+
+    <!-- Profile -->
+    <string name="profile_stats">Statistics</string>
+    <string name="profile_match_history">Match History</string>
+    <string name="profile_achievements">Achievements</string>
+    <string name="profile_heroes">My Heroes</string>
+
+    <!-- Items -->
+    <string name="item_attack">Attack</string>
+    <string name="item_magic">Magic</string>
+    <string name="item_defense">Defense</string>
+    <string name="item_movement">Movement</string>
+    <string name="item_jungle">Jungle</string>
+    <string name="item_roam">Roam</string>
+
+    <!-- General -->
+    <string name="loading">Loading…</string>
+    <string name="victory">VICTORY</string>
+    <string name="defeat">DEFEAT</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="buy">Buy</string>
+    <string name="equip">Equip</string>
+    <string name="select">Select</string>
+    <string name="locked">Locked</string>
+</resources>

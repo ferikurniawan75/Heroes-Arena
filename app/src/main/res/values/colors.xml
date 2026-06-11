@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#FF1A237E</color>
+    <color name="primary_dark">#FF0D1452</color>
+    <color name="primary_light">#FF534BAE</color>
+    <color name="accent">#FFFFD740</color>
+    <color name="accent_dark">#FFC8A415</color>
+
+    <!-- Game Colors -->
+    <color name="gold">#FFFFD700</color>
+    <color name="gold_dark">#FFB8860B</color>
+    <color name="hp_green">#FF4CAF50</color>
+    <color name="hp_red">#FFF44336</color>
+    <color name="mp_blue">#FF2196F3</color>
+    <color name="mana_purple">#FF9C27B0</color>
+    <color name="xp_orange">#FFFF9800</color>
+
+    <!-- Team Colors -->
+    <color name="team_blue">#FF1565C0</color>
+    <color name="team_blue_light">#FF42A5F5</color>
+    <color name="team_red">#FFC62828</color>
+    <color name="team_red_light">#FFEF5350</color>
+
+    <!-- Hero Class Colors -->
+    <color name="class_tank">#FF4CAF50</color>
+    <color name="class_fighter">#FFFF9800</color>
+    <color name="class_assassin">#FF9C27B0</color>
+    <color name="class_mage">#FF2196F3</color>
+    <color name="class_marksman">#FFF44336</color>
+    <color name="class_support">#FF00BCD4</color>
+
+    <!-- Rarity Colors -->
+    <color name="rarity_common">#FF9E9E9E</color>
+    <color name="rarity_uncommon">#FF4CAF50</color>
+    <color name="rarity_rare">#FF2196F3</color>
+    <color name="rarity_epic">#FF9C27B0</color>
+    <color name="rarity_legendary">#FFFFD740</color>
+
+    <!-- UI Colors -->
+    <color name="bg_dark">#FF0A0E1A</color>
+    <color name="bg_card">#FF1A1F35</color>
+    <color name="bg_overlay">#CC000000</color>
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FFB0BEC5</color>
+    <color name="text_hint">#FF607D8B</color>
+    <color name="divider">#FF263238</color>
+
+    <!-- Button Colors -->
+    <color name="btn_primary">#FF1A237E</color>
+    <color name="btn_danger">#FFC62828</color>
+    <color name="btn_success">#FF2E7D32</color>
+    <color name="btn_gold">#FFB8860B</color>
+
+    <!-- Map Colors -->
+    <color name="map_grass">#FF2E7D32</color>
+    <color name="map_water">#FF1565C0</color>
+    <color name="map_path">#FF795548</color>
+    <color name="map_wall">#FF37474F</color>
+    <color name="map_base">#FF424242</color>
+
+    <!-- Transparency -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#88000000</color>
+    <color name="light_transparent">#44000000</color>
+</resources>

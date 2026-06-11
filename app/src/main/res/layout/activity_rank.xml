@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_sm"
+        android:background="@color/bg_card">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← BACK"
+            android:textColor="@color/accent"
+            android:textSize="@dimen/text_md"
+            android:padding="@dimen/padding_sm" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RANKED"
+            android:textColor="@color/gold"
+            android:textSize="@dimen/text_xl"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <View android:layout_width="60dp" android:layout_height="1dp" />
+    </LinearLayout>
+
+    <!-- Current Rank Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardBackgroundColor="@color/bg_card"
+        app:cardCornerRadius="12dp"
+        android:layout_margin="@dimen/padding_md">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/padding_lg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏆"
+                android:textSize="48sp" />
+
+            <TextView
+                android:id="@+id/tvCurrentRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Warrior III"
+                android:textColor="@color/gold"
+                android:textSize="@dimen/text_xxl"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/padding_sm" />
+
+            <TextView
+                android:id="@+id/tvRankStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Stars"
+                android:textColor="@color/accent"
+                android:textSize="@dimen/text_lg" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Leaderboard -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LEADERBOARD"
+        android:textColor="@color/gold"
+        android:textSize="@dimen/text_lg"
+        android:textStyle="bold"
+        android:paddingStart="@dimen/padding_md"
+        android:paddingBottom="@dimen/padding_sm" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLeaderboard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/padding_sm" />
+
+</LinearLayout>

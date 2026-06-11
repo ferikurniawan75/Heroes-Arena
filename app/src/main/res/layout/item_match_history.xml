@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardBackgroundColor="@color/bg_card"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_sm"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvMatchResult"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="WIN"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvMatchHero"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Hero"
+            android:textSize="@dimen/text_sm"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/tvMatchKDA"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="0/0/0"
+            android:textSize="@dimen/text_sm"
+            android:textColor="@color/text_secondary"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvMatchMode"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Classic"
+            android:textSize="@dimen/text_xs"
+            android:textColor="@color/text_hint"
+            android:gravity="end" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

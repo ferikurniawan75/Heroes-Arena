@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_md">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/padding_md">
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← BACK"
+                android:textColor="@color/accent"
+                android:textSize="@dimen/text_md"
+                android:padding="@dimen/padding_sm" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PROFILE"
+                android:textColor="@color/gold"
+                android:textSize="@dimen/text_xl"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <View android:layout_width="60dp" android:layout_height="1dp" />
+        </LinearLayout>
+
+        <!-- Player Info Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="@dimen/padding_md">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_md">
+
+                <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Player"
+                    android:textColor="@color/gold"
+                    android:textSize="@dimen/text_xxl"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvProfileLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Level 1"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_md" />
+
+                <TextView
+                    android:id="@+id/tvProfileRank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Warrior III"
+                    android:textColor="@color/accent"
+                    android:textSize="@dimen/text_lg"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/padding_xs" />
+
+                <!-- Stats Grid -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/padding_md">
+
+                    <TextView android:id="@+id/tvTotalGames"
+                        android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:gravity="center"
+                        android:textColor="@color/text_primary" android:textSize="@dimen/text_sm" />
+
+                    <TextView android:id="@+id/tvWinRate"
+                        android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:gravity="center"
+                        android:textColor="@color/hp_green" android:textSize="@dimen/text_sm" />
+
+                    <TextView android:id="@+id/tvMvpCount"
+                        android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:gravity="center"
+                        android:textColor="@color/gold" android:textSize="@dimen/text_sm" />
+
+                    <TextView android:id="@+id/tvKda"
+                        android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:gravity="center"
+                        android:textColor="@color/accent" android:textSize="@dimen/text_sm" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Match History -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MATCH HISTORY"
+            android:textColor="@color/gold"
+            android:textSize="@dimen/text_lg"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/padding_sm" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMatchHistory"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <!-- Achievements -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ACHIEVEMENTS"
+            android:textColor="@color/gold"
+            android:textSize="@dimen/text_lg"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/padding_lg"
+            android:layout_marginBottom="@dimen/padding_sm" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAchievements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>
