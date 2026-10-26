@@ -1,3 +1,4 @@
+
 name: Build Heroes Arena APK
 
 on:
@@ -15,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -26,45 +30,63 @@ jobs:
           java-version: "17"
           cache: gradle
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: |
-            platforms;android-34
-            build-tools;34.0.0
+      - name: Locate Android SDK Manager
+        id: sdk
+        shell: bash
+        run: |
+          SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" \
+            -type f -name sdkmanager 2>/dev/null \
+            | sort -V | tail -n 1)"
+
+          if [ -z "$SDKMANAGER" ]; then
+            echo "ERROR: sdkmanager not found"
+            exit 1
+          fi
+
+          echo "SDK Manager: $SDKMANAGER"
+          echo "sdkmanager=$SDKMANAGER" >> "$GITHUB_OUTPUT"
 
       - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses || true
-
-      - name: Verify Android SDK
+        shell: bash
         run: |
-          echo "Java version:"
+          yes | "${{ steps.sdk.outputs.sdkmanager }}" \
+            --sdk_root="$ANDROID_HOME" --licenses \
+            || true
+
+      - name: Install Android SDK packages
+        shell: bash
+        run: |
+          "${{ steps.sdk.outputs.sdkmanager }}" \
+            --sdk_root="$ANDROID_HOME" \
+            --install \
+            "platforms;android-34" \
+            "build-tools;34.0.0"
+
+      - name: Verify SDK installation
+        run: |
+          test -d "$ANDROID_HOME/platforms/android-34"
+          test -d "$ANDROID_HOME/build-tools/34.0.0"
           java -version
 
-          echo "Android SDK:"
-          echo "$ANDROID_HOME"
-
-          sdkmanager --list_installed
-
       - name: Check project structure
+        shell: bash
         run: |
-          echo "Root directory:"
+          echo "Repository files:"
           ls -la
 
-          echo "Gradle wrapper:"
-          test -f gradlew || {
-            echo "ERROR: gradlew not found"
+          if [ ! -f gradlew ]; then
+            echo "ERROR: Gradle wrapper not found"
             exit 1
-          }
+          fi
 
           chmod +x gradlew
 
-          echo "Gradle build files:"
-          find . -maxdepth 3 \
-            \( -name "build.gradle" \
-            -o -name "build.gradle.kts" \
-            -o -name "settings.gradle" \
-            -o -name "settings.gradle.kts" \) \
+          echo "Gradle configuration:"
+          find . -maxdepth 4 -type f \
+            \( -name "settings.gradle" \
+            -o -name "settings.gradle.kts" \
+            -o -name "build.gradle" \
+            -o -name "build.gradle.kts" \) \
             -not -path "./.git/*"
 
       - name: Build release APK
@@ -76,11 +98,10 @@ jobs:
       - name: Find generated APKs
         if: always()
         run: |
-          echo "Searching for APK files..."
           find . -type f -name "*.apk" \
             -not -path "./.git/*" || true
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Heroes-Arena-APK
