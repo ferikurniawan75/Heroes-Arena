@@ -1,4 +1,3 @@
-
 name: Build Heroes Arena APK
 
 on:
@@ -12,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    name: Build Heroes Arena
+    name: Build Android APK
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
@@ -31,89 +30,55 @@ jobs:
           java-version: "17"
           cache: gradle
 
-      - name: Install Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Accept SDK licenses and install packages
+      - name: Locate Android SDK Manager
+        id: sdk
         shell: bash
         run: |
-          yes | sdkmanager --licenses || true
-          sdkmanager --install \
+          SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" \
+            -type f -name sdkmanager 2>/dev/null \
+            | sort -V | tail -n 1)"
+
+          if [ -z "$SDKMANAGER" ]; then
+            echo "ERROR: sdkmanager not found"
+            exit 1
+          fi
+
+          echo "SDKMANAGER=$SDKMANAGER"
+          echo "sdkmanager=$SDKMANAGER" >> "$GITHUB_OUTPUT"
+
+      - name: Accept Android SDK licenses
+        shell: bash
+        run: |
+          yes | "${{ steps.sdk.outputs.sdkmanager }}" \
+            --sdk_root="$ANDROID_HOME" --licenses || true
+
+      - name: Install Android SDK packages
+        shell: bash
+        run: |
+          "${{ steps.sdk.outputs.sdkmanager }}" \
+            --sdk_root="$ANDROID_HOME" \
+            --install \
             "platforms;android-34" \
             "build-tools;34.0.0"
 
-      - name: Verify environment
+      - name: Verify SDK
         shell: bash
         run: |
-          echo "=== Java ==="
+          test -d "$ANDROID_HOME/platforms/android-34"
+          test -d "$ANDROID_HOME/build-tools/34.0.0"
           java -version
 
-          echo "=== SDK ==="
-          echo "$ANDROID_HOME"
-          sdkmanager --list_installed
-
-          echo "=== Project files ==="
-          ls -la
-
-          test -f gradlew || {
-            echo "ERROR: gradlew not found"
-            exit 1
-          }
-
-          test -f gradle/wrapper/gradle-wrapper.properties || {
-            echo "ERROR: Gradle wrapper properties not found"
-            exit 1
-          }
-
-      - name: Fix Gradle wrapper JVM options
+      - name: Prepare Gradle wrapper
         shell: bash
         run: |
           chmod +x gradlew
-
-          echo "=== Original JVM options ==="
-          grep -n -E 'DEFAULT_JVM_OPTS|JAVA_OPTS|JVM_OPTS' \
-            gradlew || true
-
-          echo "=== Wrapper distribution ==="
+          echo "=== Gradle wrapper properties ==="
           cat gradle/wrapper/gradle-wrapper.properties
-
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-
-          p = Path("gradlew")
-          s = p.read_text()
-
-          # Normalize the standard Gradle wrapper default JVM options.
-          pattern = r'(?m)^DEFAULT_JVM_OPTS=.*$'
-          replacement = 'DEFAULT_JVM_OPTS=\'"-Xmx64m" "-Xms64m"\''
-          updated, count = re.subn(pattern, replacement, s, count=1)
-
-          if count == 1:
-              p.write_text(updated)
-              print("Normalized DEFAULT_JVM_OPTS in gradlew")
-          else:
-              print("DEFAULT_JVM_OPTS not found; no change made")
-          PY
-
-          echo "=== JVM options after normalization ==="
+          echo "=== JVM options ==="
           grep -n -E 'DEFAULT_JVM_OPTS|JAVA_OPTS|JVM_OPTS' \
             gradlew || true
 
-      - name: Diagnose Gradle properties
-        shell: bash
-        run: |
-          echo "=== gradle.properties files ==="
-          find . -name gradle.properties \
-            -not -path "./.git/*" \
-            -type f -print -exec cat {} \;
-
-          echo "=== Java option environment ==="
-          env | grep -E \
-            '^(JAVA_TOOL_OPTIONS|JDK_JAVA_OPTIONS|JAVA_OPTS|GRADLE_OPTS)=' \
-            || true
-
-      - name: Verify Gradle wrapper
+      - name: Verify Gradle
         run: ./gradlew --version --no-daemon
 
       - name: Build release APK
@@ -123,15 +88,13 @@ jobs:
             --stacktrace \
             --max-workers=2
 
-      - name: Find generated APKs
+      - name: Find APK
         if: always()
-        shell: bash
         run: |
-          echo "=== APK files ==="
           find . -type f -name "*.apk" \
             -not -path "./.git/*" || true
 
-      - name: Upload APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: Heroes-Arena-APK
